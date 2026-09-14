@@ -15,7 +15,7 @@ service cloud.firestore {
       // لوحة الإدارة: استبدلي البريد أدناه ببريد حساب العروسين.
       // يجب أن يكون الحساب مسجلاً في Firebase Authentication.
       allow read: if request.auth != null
-        && request.auth.token.email == "YOUR_ADMIN_EMAIL@example.com";
+        && request.auth.token.email == "esrameliodase42@gmail.com";
 
       allow delete: if false;
     }
