@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دعوة زفاف | أحمد & ليان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<main>
+<section class="hero">
+  <div class="ornament">✦</div>
+  <p class="eyebrow">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</p>
+  <p class="invite-line">بكل الحب والسرور ندعوكم لمشاركتنا فرحتنا</p>
+  <h1><span>أحمد</span><i>&</i><span>ليان</span></h1>
+  <div class="gold-line"></div>
+  <p class="date">الجمعة · 18 ديسمبر 2026</p>
+  <p class="place">قاعة النخبة للاحتفالات · المدينة المنورة</p>
+</section>
+
+<section class="card login-card" id="loginSection">
+  <p class="section-kicker">الدخول إلى الدعوة</p>
+  <h2>أهلاً بك</h2>
+  <p class="muted">أنشئ حساب دعوتك باستخدام بريدك الإلكتروني، ثم أكّد حضورك.</p>
+
+  <form id="guestForm">
+    <label>الاسم الكامل
+      <input id="name" required placeholder="مثال: محمد عبدالله">
+    </label>
+    <label>البريد الإلكتروني
+      <input id="email" type="email" required placeholder="name@example.com">
+    </label>
+    <label>كلمة المرور
+      <input id="password" type="password" minlength="6" required placeholder="6 أحرف على الأقل">
+    </label>
+    <label>عدد المرافقين
+      <input id="companions" type="number" min="0" max="10" value="0" required>
+    </label>
+    <button class="primary" type="submit" id="loginButton">دخول / إنشاء الدعوة <span>←</span></button>
+  </form>
+  <p id="authMessage" class="error" hidden></p>
+  <p class="demo-note">الإيميل وكلمة المرور يستخدمان فقط للمصادقة عبر Firebase.</p>
+</section>
+
+<div id="invitation" hidden>
+<section class="section">
+  <p class="section-kicker">دعوتكم شرف لنا</p>
+  <h2>ننتظركم في يومنا الكبير</h2>
+  <p class="lead">وجودكم معنا هو أجمل ما يمكن أن نهديه لهذه الليلة.</p>
+</section>
+
+<section class="countdown-wrap">
+  <p class="section-kicker">متبقي على موعد المناسبة</p>
+  <div class="countdown">
+    <div><strong id="days">00</strong><span>يوم</span></div>
+    <div><strong id="hours">00</strong><span>ساعة</span></div>
+    <div><strong id="minutes">00</strong><span>دقيقة</span></div>
+    <div><strong id="seconds">00</strong><span>ثانية</span></div>
+  </div>
+</section>
+
+<section class="couple section">
+  <div class="person"><span>العريس</span><h3>أحمد</h3></div>
+  <div class="amp">&</div>
+  <div class="person"><span>العروس</span><h3>ليان</h3></div>
+</section>
+
+<section class="details section">
+  <div class="detail-card"><span>التاريخ</span><b>18 ديسمبر 2026</b><small>الجمعة</small></div>
+  <div class="detail-card"><span>الوقت</span><b>08:00 مساءً</b><small>يُرجى الحضور قبل الموعد</small></div>
+  <div class="detail-card"><span>المكان</span><b>قاعة النخبة</b><small>المدينة المنورة</small></div>
+</section>
+
+<section class="map-section section">
+  <div>
+    <p class="section-kicker">موقع الاحتفال</p>
+    <h2>نلتقي هناك</h2>
+    <p class="muted">افتح الموقع مباشرة في خرائط Google.</p>
+    <a class="map-button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Al+Nokhba+Events+Hall+Madinah">فتح الموقع في Google Maps ↗</a>
+  </div>
+  <div class="map-placeholder"><span>⌖</span><b>قاعة النخبة للاحتفالات</b><small>المدينة المنورة</small></div>
+</section>
+
+<section class="card rsvp">
+  <p class="section-kicker">تأكيد الحضور</p>
+  <h2>هل سنراك في يومنا؟</h2>
+  <form id="rsvpForm">
+    <div class="radio-row">
+      <label><input type="radio" name="attendance" value="yes" checked> سأحضر</label>
+      <label><input type="radio" name="attendance" value="no"> لن أتمكن من الحضور</label>
+    </div>
+    <label>ملاحظة للعروسين
+      <textarea id="note" rows="3" placeholder="رسالة قصيرة..."></textarea>
+    </label>
+    <button class="primary" type="submit">تأكيد الحضور</button>
+  </form>
+  <div id="rsvpMessage" class="success" hidden></div>
+</section>
+
+<section class="verification section">
+  <p class="section-kicker">دعوتك الخاصة</p>
+  <h2>رمز التحقق</h2>
+  <p class="muted">احتفظ بهذا الرمز. يمكن للعروسين التحقق منه عند الدخول.</p>
+  <div id="qrcode"></div>
+  <code id="guestCode"></code>
+</section>
+</div>
+</main>
+<footer>صُممت هذه الدعوة بعناية لتبقى ذكرى جميلة.</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

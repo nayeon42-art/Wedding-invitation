@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /guests/{guestId} {
+      // أي مدعو يستطيع إنشاء سجل لنفس حسابه فقط.
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid;
+
+      // المدعو يستطيع قراءة وتعديل سجله فقط.
+      allow read, update: if request.auth != null
+        && resource.data.uid == request.auth.uid;
+
+      // لوحة الإدارة: استبدلي البريد أدناه ببريد حساب العروسين.
+      // يجب أن يكون الحساب مسجلاً في Firebase Authentication.
+      allow read: if request.auth != null
+        && request.auth.token.email == "YOUR_ADMIN_EMAIL@example.com";
+
+      allow delete: if false;
+    }
+  }
+}
