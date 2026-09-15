@@ -1,0 +1,16 @@
+rules_version = '2';
+
+// انسخي هذا الملف إلى: Firebase Console → Firestore Database → Rules
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /rsvps/{docId} {
+      // أي زائر يقدر يرسل تأكيد حضور جديد (نموذج الدعوة)
+      allow create: if true;
+
+      // فقط الأدمن المسجّل دخول يقدر يشوف/يعدّل/يحذف الردود
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}
